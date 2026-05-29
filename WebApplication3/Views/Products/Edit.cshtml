@@ -1,0 +1,115 @@
+﻿@model WebApplication3.Models.Product
+
+<div class="container mt-4">
+
+    <h2>Редактирование товара</h2>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["Error"]
+        </div>
+    }
+
+    <form method="post">
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Артикул
+            </label>
+
+            <input asp-for="Article"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Наименование
+            </label>
+
+            <input asp-for="Name"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Описание
+            </label>
+
+            <textarea asp-for="Description"
+                      class="form-control"
+                      rows="4"></textarea>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Единица измерения
+            </label>
+
+            <input asp-for="Unit"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Минимальный остаток
+            </label>
+
+            <input asp-for="MinStock"
+                   class="form-control" />
+
+        </div>
+
+        <div class="d-flex gap-2">
+
+            <button type="submit"
+                    class="btn btn-primary">
+
+                Сохранить
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+
+                Назад
+
+            </a>
+
+        </div>
+
+    </form>
+
+    <hr class="my-4" />
+
+    <form asp-action="Delete"
+          method="post"
+          onsubmit="return confirm('Удалить товар?');">
+
+        <input type="hidden"
+               name="id"
+               value="@Model.Id" />
+
+        @Html.AntiForgeryToken()
+
+        <button type="submit"
+                class="btn btn-danger">
+
+            Удалить товар
+
+        </button>
+
+    </form>
+
+</div>

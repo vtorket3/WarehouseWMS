@@ -1,0 +1,58 @@
+﻿@model List<WebApplication3.Models.Product>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between">
+        <h2>Товары</h2>
+
+        <a href="/Products/Create"
+           class="btn btn-primary">
+            Добавить товар
+        </a>
+        <a href="/Products/Import" class="btn btn-secondary mb-3">
+            Импорт Excel
+        </a>
+        <a href="/Products/Export" class="btn btn-outline-primary mb-3">
+            Экспорт Excel
+        </a>
+    </div>
+
+
+    <table class="table table-bordered mt-3">
+
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Артикул</th>
+                <th>Название</th>
+                <th>Единица измерения</th>
+                <th>Мин. кол-во</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Article</td>
+                    <td>@item.Name</td>
+                    <td>@item.Unit</td>
+                    <td>@item.MinStock</td>
+
+                    <td>
+                        <a class="btn btn-warning"
+                           href="/Products/Edit/@item.Id">
+                            Изменить
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

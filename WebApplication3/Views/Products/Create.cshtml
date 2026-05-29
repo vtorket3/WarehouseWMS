@@ -1,0 +1,70 @@
+﻿@model WebApplication3.Models.Product
+
+<div class="container mt-4">
+
+    <h2>Новый товар</h2>
+
+    <form method="post">
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Артикул
+            </label>
+
+            <input asp-for="Article"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Наименование
+            </label>
+
+            <input asp-for="Name"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Описание
+            </label>
+
+            <textarea asp-for="Description"
+                      class="form-control"></textarea>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Единица измерения
+            </label>
+
+            <input asp-for="Unit"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Минимальный остаток
+            </label>
+
+            <input asp-for="MinStock"
+                   class="form-control" />
+
+        </div>
+
+        <button class="btn btn-success">
+            Сохранить
+        </button>
+
+    </form>
+
+</div>

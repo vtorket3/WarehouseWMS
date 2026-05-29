@@ -1,0 +1,179 @@
+﻿@model List<WebApplication3.Models.StockBalance>
+
+<div class="container">
+
+    <div class="bg-white rounded shadow-sm p-5 mb-4">
+
+        <h1 class="display-5 fw-bold">
+            Warehouse WMS
+        </h1>
+
+        <p class="lead text-muted">
+            Система учета товаров, партий, резервирования и складских операций.
+        </p>
+
+    </div>
+
+    <div class="row g-4">
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h5>Товары</h5>
+
+                    <p class="text-muted">Справочник товаров</p>
+
+                    <a href="/Products" class="btn btn-primary w-100">
+                        Открыть
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h5>Журнал операций</h5>
+
+                    <p class="text-muted">Все складские движения</p>
+
+                    <a href="/StockOperations" class="btn btn-dark w-100">
+                        Открыть
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h5>Остатки</h5>
+
+                    <p class="text-muted">Контроль складских запасов</p>
+
+                    <a href="/Stock" class="btn btn-success w-100">
+                        Открыть
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h5>Приемка</h5>
+
+                    <p class="text-muted">Поступление товаров</p>
+
+                    <a href="/Stock/Receipt" class="btn btn-warning w-100">
+                        Открыть
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-3">
+
+            <div class="card shadow-sm h-100">
+
+                <div class="card-body">
+
+                    <h5>Перемещение</h5>
+
+                    <p class="text-muted">Межскладские операции</p>
+
+                    <a href="/Stock/Transfer" class="btn btn-secondary w-100">
+                        Открыть
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr class="my-5" />
+
+    <h3 class="mb-3">Текущий склад</h3>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="alert alert-info">
+            Нет данных по складу
+        </div>
+    }
+    else
+    {
+        <div class="row g-3">
+
+            @foreach (var item in Model)
+            {
+                var available = item.Quantity - item.ReservedQuantity;
+
+                string color = "bg-success";
+
+                if (item.Product != null)
+                {
+                    if (item.Quantity <= item.Product.MinStock)
+                    {
+                        color = item.Quantity == item.Product.MinStock
+                            ? "bg-warning text-dark"
+                            : "bg-danger";
+                    }
+                }
+
+                <div class="col-md-2">
+
+                    <div class="card text-white @color shadow-sm">
+
+                        <div class="card-body p-2">
+
+                            <div class="fw-bold small">
+                                @item.Product?.Name
+                            </div>
+
+                            <div>
+                                Ост: @available
+                            </div>
+
+                            <div class="small">
+                                Мин: @item.Product?.MinStock
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            }
+
+        </div>
+    }
+
+</div>

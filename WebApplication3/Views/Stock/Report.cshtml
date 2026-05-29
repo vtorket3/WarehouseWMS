@@ -1,0 +1,32 @@
+﻿@model dynamic
+
+<div class="container mt-4">
+
+    <h2>Оборотно-сальдовая ведомость</h2>
+
+    <table class="table table-bordered mt-3">
+
+        <thead>
+            <tr>
+                <th>Товар</th>
+                <th>Приход</th>
+                <th>Расход</th>
+                <th>Перемещения</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Product</td>
+                    <td>@item.Income</td>
+                    <td>@item.Expense</td>
+                    <td>@item.Transfer</td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>

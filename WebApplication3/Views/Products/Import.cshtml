@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "Импорт товаров";
+}
+
+<div class="container mt-4">
+
+    <h2>Импорт товаров из Excel</h2>
+
+    <form method="post" enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <label class="form-label">Файл Excel</label>
+            <input type="file" name="file" class="form-control" />
+        </div>
+
+        <button class="btn btn-success">
+            Импортировать
+        </button>
+
+    </form>
+
+    <hr />
+
+    <p class="text-muted">
+        Формат файла:
+    </p>
+
+    <pre>
+Article | Name | Description | Unit | MinStock
+    </pre>
+
+</div>

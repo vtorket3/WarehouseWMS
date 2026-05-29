@@ -1,0 +1,86 @@
+﻿@model WebApplication3.Models.WriteOffViewModel
+
+@{
+    var stock =
+        ViewBag.Stock as WebApplication3.Models.StockBalance;
+}
+
+<div class="container mt-4">
+
+    <h2>Write Off Product</h2>
+
+    @if (TempData["Error"] != null)
+    {
+        <div class="alert alert-danger">
+
+            @TempData["Error"]
+
+        </div>
+    }
+
+    <div class="card p-3 mb-4">
+
+        <h4>
+            @stock?.Product?.Name
+        </h4>
+
+        <p>
+            Кол-во сейчас
+            <strong>@stock?.Quantity</strong>
+        </p>
+
+    </div>
+
+    <form method="post">
+
+        <input type="hidden"
+               asp-for="StockBalanceId" />
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Кол-во списания
+            </label>
+
+            <input asp-for="Quantity"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>Ответственный</label>
+
+            <input asp-for="ResponsiblePerson"
+                   class="form-control" />
+
+        </div>
+
+        <div class="mb-3">
+
+            <label class="form-label">
+                Причина
+            </label>
+
+            <textarea asp-for="Reason"
+                      class="form-control">
+            </textarea>
+
+        </div>
+
+        <button class="btn btn-danger">
+
+            Списать
+
+        </button>
+
+        <a href="/Stock"
+           class="btn btn-secondary">
+
+            Отмена
+
+        </a>
+
+    </form>
+
+</div>

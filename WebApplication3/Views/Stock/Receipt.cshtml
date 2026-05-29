@@ -1,0 +1,133 @@
+﻿@model WebApplication3.Models.StockReceiptViewModel
+
+<div class="container mt-4">
+
+    <div class="card shadow">
+
+        <div class="card-header bg-success text-white">
+
+            <h3 class="mb-0">
+                Поступление товара
+            </h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form asp-action="Receipt" method="post">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Товар
+                    </label>
+
+                    <select asp-for="ProductId"
+                            class="form-select">
+
+                        <option value="">
+                            Выберите товар
+                        </option>
+
+                        @foreach (var item in ViewBag.Products)
+                        {
+                            <option value="@item.Id">
+                                @item.Name (@item.Article)
+                            </option>
+                        }
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Склад
+                    </label>
+
+                    <select asp-for="WarehouseId"
+                            class="form-select">
+
+                        @foreach (var item in ViewBag.Warehouses)
+                        {
+                            <option value="@item.Id">
+                                @item.Name
+                            </option>
+                        }
+
+                    </select>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Количество
+                    </label>
+
+                    <input asp-for="Quantity"
+                           type="number"
+                           step="0.01"
+                           class="form-control" />
+
+                </div>
+                <div class="mb-3">
+
+                    <label>Ответственный</label>
+
+                    <input asp-for="ResponsiblePerson"
+                           class="form-control" />
+
+                </div>
+                <hr />
+
+                <h5>
+                    Информация о партии
+                </h5>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Номер партии
+                    </label>
+
+                    <input asp-for="BatchNumber"
+                           class="form-control"
+                           placeholder="Например LOT-001" />
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Срок годности
+                    </label>
+
+                    <input asp-for="ExpirationDate"
+                           type="date"
+                           class="form-control" />
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-success">
+
+                    Сохранить поступление
+
+                </button>
+
+                <a href="/Stock"
+                   class="btn btn-secondary">
+
+                    Назад
+
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>

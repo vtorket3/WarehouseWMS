@@ -1,0 +1,66 @@
+﻿@model List<WebApplication3.Models.StockOperation>
+
+<div class="container mt-4">
+
+    <h2>Журнал операций</h2>
+
+    <table class="table table-bordered">
+
+        <thead class="table-dark">
+
+            <tr>
+
+                <th>Дата</th>
+
+                <th>Тип</th>
+
+                <th>Товар</th>
+
+                <th>Количество</th>
+
+                <th>Ответственный</th>
+
+                <th>Комментарий</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+
+                    <td>
+                        @item.CreatedAt
+                    </td>
+
+                    <td>
+                        @item.OperationType
+                    </td>
+
+                    <td>
+                        @item.Product?.Name
+                    </td>
+
+                    <td>
+                        @item.Quantity
+                    </td>
+
+                    <td>
+                        @item.ResponsiblePerson
+                    </td>
+
+                    <td>
+                        @item.Comment
+                    </td>
+
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+
+</div>

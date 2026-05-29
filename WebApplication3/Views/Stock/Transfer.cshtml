@@ -1,0 +1,100 @@
+﻿@model WebApplication3.Models.TransferViewModel
+
+<div class="container mt-4">
+
+    <h2>Перемещение товара</h2>
+
+    <form method="post">
+
+        <div class="mb-3">
+
+            <label>
+                Товар
+            </label>
+
+            <select asp-for="ProductId"
+                    class="form-select">
+
+                @foreach (var p in ViewBag.Products)
+                {
+                    <option value="@p.Id">
+
+                        @p.Name
+
+                    </option>
+                }
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>
+                Со склада
+            </label>
+
+            <select asp-for="SourceWarehouseId"
+                    class="form-select">
+
+                @foreach (var w in ViewBag.Warehouses)
+                {
+                    <option value="@w.Id">
+
+                        @w.Name
+
+                    </option>
+                }
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>
+                На склад
+            </label>
+
+            <select asp-for="TargetWarehouseId"
+                    class="form-select">
+
+                @foreach (var w in ViewBag.Warehouses)
+                {
+                    <option value="@w.Id">
+
+                        @w.Name
+
+                    </option>
+                }
+
+            </select>
+
+        </div>
+
+        <div class="mb-3">
+
+            <label>
+                Количество
+            </label>
+
+            <input asp-for="Quantity"
+                   class="form-control" />
+        </div>
+        <div class="mb-3">
+
+            <label>Ответственный</label>
+
+            <input asp-for="ResponsiblePerson"
+                   class="form-control" />
+
+        </div>
+        <button class="btn btn-primary">
+
+            Переместить
+
+        </button>
+
+    </form>
+
+</div>
